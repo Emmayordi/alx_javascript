@@ -1,4 +1,4 @@
-// Use console.log(...) to print three lines of output
+// console.log() to print three lines of output
 console.log("C is fun");
 console.log("Python is cool");
 console.log("JavaScript is amazing");
