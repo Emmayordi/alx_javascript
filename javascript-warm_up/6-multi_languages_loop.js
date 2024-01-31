@@ -1,9 +1,6 @@
-// Using let to declare variables
-let firstLine = "C is fun";
-let secondLine = "Python is cool";
-let thirdLine = "JavaScript is amazing";
+//Write a script that prints 3 lines: (like 1-multi_languages.js) but by using an array of string and a loop
+const languages = ["C is fun", "Python is cool", "JavaScript is amazing"];
 
-// Printing the lines using console.log
-console.log(firstLine);
-console.log(secondLine);
-console.log(thirdLine);
+for (let i = 0; i < languages.length; i++) {
+    console.log(languages[i]);
+}
