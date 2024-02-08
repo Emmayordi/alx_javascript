@@ -21,4 +21,15 @@ request.get(apiUrl, (error, response, body) => {
                     if (completedTasksByUser[task.userId]) {
                         completedTasksByUser[task.userId]++;
                     } else {
-                        completedTasksByUser[task.
+                        completedTasksByUser[task.userId] = 1;
+                    }
+                }
+            });
+
+            // Print the result as a JSON object
+            console.log(JSON.stringify(completedTasksByUser, null, 2));
+        } catch (parseError) {
+            console.error(`Error parsing JSON: ${parseError.message}`);
+        }
+    }
+});
