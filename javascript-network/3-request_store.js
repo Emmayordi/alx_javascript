@@ -2,9 +2,11 @@
 const request = require('request');
 const fs = require('fs');
 
-// Get the URL and file path from the command line arguments
-const url = process.argv[2];
-const filePath = process.argv[3];
+// URL to request
+const url = 'http://localhost:5050/route_0';
+
+// File path to store the body response
+const filePath = 'output.txt';
 
 // Make a GET request to the specified URL
 request.get(url, (error, response, body) => {
@@ -16,3 +18,4 @@ request.get(url, (error, response, body) => {
         console.log(`File saved to ${filePath}`);
     }
 });
+
