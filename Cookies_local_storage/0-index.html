@@ -1,0 +1,47 @@
+<!-- 0-index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Example</title>
+</head>
+<body>
+    <h1>Login to the website</h1>
+
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname">
+
+  <br>
+
+  <label for="email">Email:</label>
+  <input type="text" id="email">
+
+  <br>
+
+  <button id="loginButton">Log me in</button>
+  <button id="showCookiesButton">Show the cookies</button>
+
+  <script>
+// src/index.js
+function setCookies() {
+  const firstnameInput = document.getElementById('firstname').value;
+  const emailInput = document.getElementById('email').value;
+
+  document.cookie = `firstname=${firstnameInput}`;
+  document.cookie = `email=${emailInput}`;
+}
+
+function showCookies() {
+  const cookiesParagraph = document.createElement('p');
+  cookiesParagraph.innerHTML = `Cookies: ${document.cookie}`;
+  document.body.appendChild(cookiesParagraph);
+}
+
+// Add event listeners to buttons
+document.getElementById('loginButton').addEventListener('click', setCookies);
+document.getElementById('showCookiesButton').addEventListener('click', showCookies);
+
+  </script>
+</body>
+</html>
