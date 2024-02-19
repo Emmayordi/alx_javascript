@@ -4,44 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cookie Example</title>
+  <title>Cookies</title>
 </head>
 <body>
-    <h1>Login to the website</h1>
 
-  <label for="firstname">First Name:</label>
-  <input type="text" id="firstname">
+  <h1>Login to the website</h1>
+  <input type="text" placeholder="firstname" id="firstname" />
+  <input type="text" placeholder="email" id="email" />
+  <button onclick="setCookies()">Log me in</button>
 
-  <br>
-
-  <label for="email">Email:</label>
-  <input type="text" id="email">
-
-  <br>
-
-  <button id="loginButton">Log me in</button>
-  <button id="showCookiesButton">Show the cookies</button>
+  <h1>Cookies</h1>
+  <button onclick="showCookies()">Show the cookies</button>
 
   <script>
-// src/index.js
-function setCookies() {
-  const firstnameInput = document.getElementById('firstname').value;
-  const emailInput = document.getElementById('email').value;
+    function setCookies() {
+      let firstname = document.getElementById("firstname").value;
+      let email = document.getElementById("email").value;
 
-  document.cookie = `firstname=${firstnameInput}`;
-  document.cookie = `email=${emailInput}`;
-}
+      document.cookie = "firstname=" + firstname + ";";
+      document.cookie = "email=" + email + ";";
+    }
 
-function showCookies() {
-  const cookiesParagraph = document.createElement('p');
-  cookiesParagraph.innerHTML = `Cookies: ${document.cookie}`;
-  document.body.appendChild(cookiesParagraph);
-}
+    function showCookies() {
+      let cookies = document.cookie.split(";");
 
-// Add event listeners to buttons
-document.getElementById('loginButton').addEventListener('click', setCookies);
-document.getElementById('showCookiesButton').addEventListener('click', showCookies);
+      let p = document.createElement("p");
+      p.innerHTML = "Cookies: ";
 
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.indexOf("firstname") == 0) {
+          p.innerHTML += "Firstname: " + cookie.substring("firstname".length + 1);
+        } else if (cookie.indexOf("email") == 0) {
+          p.innerHTML += " - Email: " + cookie.substring("email".length + 1);
+        }
+      }
+
+      document.body.appendChild(p);
+    }
   </script>
+
 </body>
 </html>
+

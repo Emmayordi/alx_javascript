@@ -1,0 +1,66 @@
+<!-- 4-index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookies</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+</head>
+<body>
+
+  <script>
+    function setCookiesAndShowWelcomeMessage() {
+      let firstname = document.getElementById("firstname").value;
+      let email = document.getElementById("email").value;
+
+      let date = new Date();
+      date.setTime(date.getTime() + 10 * 24 * 60 * 60 * 1000); // 10 days
+
+      // Use js-cookie set function to set cookies
+      Cookies.set("firstname", firstname, { expires: date, path: '/' });
+      Cookies.set("email", email, { expires: date, path: '/' });
+
+      // Call the showWelcomeMessageOrForm function
+      showWelcomeMessageOrForm();
+    }
+
+    function deleteCookiesAndShowForm() {
+      // Use js-cookie remove function to delete cookies
+      Cookies.remove("firstname", { path: '/' });
+      Cookies.remove("email", { path: '/' });
+
+      // Call the showForm function
+      showForm();
+    }
+
+    function showWelcomeMessageOrForm() {
+      let firstname = Cookies.get("firstname");
+
+      if (firstname) {
+        // User is logged in, build and display the welcome message
+        let h1 = document.createElement("h1");
+        h1.innerHTML = "Welcome " + firstname + " ";
+        
+        let logoutLink = document.createElement("a");
+        logoutLink.href = "#";
+        logoutLink.style.fontWeight = "normal";
+        logoutLink.style.fontStyle = "italic";
+        logoutLink.style.marginLeft = "10px";
+        logoutLink.innerHTML = "(logout)";
+        logoutLink.onclick = deleteCookiesAndShowForm;
+
+        h1.appendChild(logoutLink);
+        
+        // Clear existing content and append the welcome message
+        document.body.innerHTML = "";
+        document.body.appendChild(h1);
+      } else {
+        // User is not logged in, show the login form
+        showForm();
+      }
+    }
+  </script>
+
+</body>
+</html>
